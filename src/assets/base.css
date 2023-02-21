@@ -28,7 +28,7 @@
 
 * {
   font-family: gameboy;
-  filter: blur(0.45px);
+  filter: blur(0.4px);
   /* scroll-behavior: smooth; */
   margin: 0;
   padding: 0;
@@ -47,4 +47,18 @@
 .routerLink:hover {
   color: var(--GBCboldText);
   text-shadow: 0 0 2px rgb(52, 53, 48);
+}
+
+@media only screen and (max-width: 1200px) {
+  * {
+    filter: blur(0.35px);
+  }
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+  * {
+    filter: blur(0.3px);
+  }
 }

@@ -34,4 +34,11 @@ p:hover {
 p.brick {
     color: var(--GBBtext);
 }
+
+@media only screen and (max-width: 380px) {
+    p{
+        font-size: 12px;
+    }
+
+}
 </style>

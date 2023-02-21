@@ -129,4 +129,17 @@ input {
 #luckyButton.brick {
     color: var(--GBBboldText);
 }
+
+@media only screen and (max-width: 380px) {
+    p, label{
+        font-size: 12px;
+    }
+    #luckyButton {
+        font-size: 12px;
+    }
+
+    section{
+        margin: 10px;
+    }
+}
 </style>

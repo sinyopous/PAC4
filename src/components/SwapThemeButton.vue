@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 const emit = defineEmits(['emitTheme'])
 
 
@@ -11,6 +11,7 @@ const brickLavelClass = computed(() => {
     } else {
         return ''
     }
+    
 })
 
 const colorLavelClass = computed(() => {
@@ -20,6 +21,13 @@ const colorLavelClass = computed(() => {
         return 'brick'
     }
 })
+
+
+
+//-------------------------SAVE THEME ON LOCAL STORAGE------------------------------
+
+theme.value =  window.localStorage.getItem('theme')
+watch(theme,()=>window.localStorage.setItem('theme',theme.value))
 
 
 
@@ -74,5 +82,16 @@ label:hover {
 
 input {
     display: none;
+}
+
+
+@media only screen and (max-width: 380px) {
+    label {
+        font-size: 12px;
+    }
+
+    input {
+        font-size: 12px;
+    }
 }
 </style>

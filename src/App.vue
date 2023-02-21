@@ -250,8 +250,9 @@ watch(allPokesFetched, stopAnimation)
 //------------------------------------THEME SWAP-------------------------------------------
 
 const theme = ref('color')
-const printTheme = ()=> console.log(theme.value)
+const printTheme = () => console.log(theme.value)
 
+theme.value = window.localStorage.getItem('theme')
 
 
 
@@ -266,16 +267,11 @@ const printTheme = ()=> console.log(theme.value)
       <img id="redDot" src="./assets/redDot.png" alt="">
       <div id="gameboyScreen" :class="theme">
 
-        <ThemeButton v-if="allPokesFetched"
-        @emitTheme="(theTheme) => {theme = theTheme; printTheme()}"/>
+        <ThemeButton v-show="allPokesFetched" @emitTheme="(theTheme) => { theme = theTheme; printTheme() }" />
 
-        <Return 
-          :theTheme="theme"
-          v-on:click="returnClick" v-if="allPokesFetched" />
+        <Return :theTheme="theme" v-on:click="returnClick" v-if="allPokesFetched" />
 
-        <h1
-        :class="theme"
-         v-if="!allPokesFetched">{{ catchEmAll }}</h1>
+        <h1 :class="theme" v-if="!allPokesFetched">{{ catchEmAll }}</h1>
 
         <div v-show="allPokesFetched" id="loadedContent">
 
@@ -283,45 +279,32 @@ const printTheme = ()=> console.log(theme.value)
 
           <div v-show="tenPokeScreen" class="box">
             <section id="simpleCardBox">
-              <SimpleCard v-for="pokemon in fetchedPokes" 
-              v-bind:key="pokemon.id" 
-              :info="pokemon"
-              v-on:click="pokeClick"
-              :theTheme="theme" />
+              <SimpleCard v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id" :info="pokemon" v-on:click="pokeClick"
+                :theTheme="theme" />
             </section>
           </div>
 
 
           <div v-show="tenPokeScreen || searchScreen" id="pokeSearchBar">
-            <label
-              :class="theme"
-             for="pokeInput">pokesearch </label>
-            <input
-              :class="theme"
-             id="pokeInput" type="text" placeholder="&nbsp;pokachu?" v-model="pokeToSearch"
+            <label :class="theme" for="pokeInput">pokesearch </label>
+            <input :class="theme" id="pokeInput" type="text" placeholder="&nbsp;pokachu?" v-model="pokeToSearch"
               v-on:input="searchInput">
           </div>
 
 
           <div v-show="tenPokeScreen || luckyScreen">
-            <GetRandomPoke
-              :theTheme="theme"
-              v-on:emitArray="(array) => { arrayToShow = array; luckyClick() }" />
+            <GetRandomPoke :theTheme="theme" v-on:emitArray="(array) => { arrayToShow = array; luckyClick() }" />
           </div>
 
 
           <div v-show="luckyScreen || searchScreen" id="luckyBox">
-            <SimpleCardLucky 
-              :theTheme="theme"
-              v-for="pokemon in allPokesData" v-bind:key="pokemon.id" :info="pokemon"
+            <SimpleCardLucky :theTheme="theme" v-for="pokemon in allPokesData" v-bind:key="pokemon.id" :info="pokemon"
               :pokeArray="arrayToShow" v-on:click="pokeClick" :pokeToSearch="pokeToSearch" :luckyScreen="luckyScreen"
               :searchScreen="searchScreen" />
           </div>
 
 
-          <RouterView 
-          :theTheme="theme"
-          v-show="detailsScreen" />
+          <RouterView :theTheme="theme" v-show="detailsScreen" />
 
         </div>
       </div>
@@ -445,4 +428,58 @@ h1.brick {
 label.brick {
   color: var(--GBBtext);
 }
+
+@media only screen and (max-width: 1800px) {
+  #gameboyBody {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1750px) {
+  #gameboyScreen {
+    margin: 50px auto;
+    border-radius: 0;
+  }
+
+  #redDot {
+    display: none;
+  }
+
+  #gameboyScreenBorder {
+
+    border: solid 1px var(--GBCborderShadow);
+    border-radius: 0;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1680px) {
+  #gameboyScreen {
+    margin: 30px auto;
+  }
+
+  #gameboyScreenBorder {
+    /* border: none */
+  }
+}
+
+@media only screen and (max-width: 1575px) {
+  #gameboyScreen {
+    margin: 0 auto;
+    border: none
+  }
+  #gameboyScreen.brick {
+    border: none
+  }
+
+  #gameboyScreenBorder {
+    border: none
+  }
+
+  #gameboyScreenBorder.brick {
+    border: none
+  }
+}
+
+
 </style>
