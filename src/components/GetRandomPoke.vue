@@ -1,10 +1,9 @@
 <script setup>
 import NumSelector from './NumSelector.vue'
-import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import { getRandomNumArray, totalNumOfPokemon } from '../utilities/utilities'
 const emit = defineEmits(['emitArray'])
-
+const props = defineProps(['theTheme'])
 
 
 //-------------------GENERAR ARRAY DE POKEINDEX SEGONS INPUT I ENVIARLA CAP AL PARENT-------------------
@@ -56,17 +55,23 @@ const showToggle = () => {
 <template>
     <section >
         <div>
-            <p>or get</p>
+            <p 
+            :class="props.theTheme">or get</p>
         </div>
         <NumSelector id="numSelector" v-on:numPlus="numPlusPokes" v-on:numMinus="numMinusPokes" v-show="!notShowAll"/>
         <div>
-            <p>&nbsp;random pokemon</p>
+            <p
+            :class="props.theTheme">&nbsp;random pokemon</p>
         </div>
         <div v-on:click="$emit('emitArray', arrayToFetch)">
-            <p id="luckyButton"  v-on:click="getArrayToFetch" class="routerLink" to="/getLucky">get lucky!</p>
+            <p 
+            :class="props.theTheme"
+            id="luckyButton"  v-on:click="getArrayToFetch" class="routerLink" to="/getLucky">get lucky!</p>
         </div>
         <div>
-            <label for="order">&nbsp; {{ showPokes }}</label>
+            <label
+            :class="props.theTheme"
+             for="order">&nbsp; {{ showPokes }}</label>
             <input v-on:change="showToggle" v-model="notShowAll" type="checkbox" name="order" id="order">
         </div>
 </section>
@@ -115,5 +120,13 @@ label:hover {
 
 input {
     display: none;
+}
+
+.brick {
+    color: var(--GBBtext);
+}
+
+#luckyButton.brick {
+    color: var(--GBBboldText);
 }
 </style>

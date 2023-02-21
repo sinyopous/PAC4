@@ -3,6 +3,7 @@ import pokeApi from '../services/apiServices';
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router';
 
+const props = defineProps(['theTheme'])
 
 const fetchedPokes = ref([]);
 
@@ -47,19 +48,21 @@ onMounted(() => {
 </script>
 
 <template>
-    <section v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id">
+    <section 
+    :class="props.theTheme"
+     v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id">
         <div id="portraitsBox">
-            <img v-bind:src="pokemon.front">
-            <img v-bind:src="pokemon.back">
-            <img v-bind:src="pokemon.frontShiny">
-            <img v-bind:src="pokemon.backShiny">
+            <img :class="props.theTheme" v-bind:src="pokemon.front">
+            <img :class="props.theTheme" v-bind:src="pokemon.back">
+            <img :class="props.theTheme" v-bind:src="pokemon.frontShiny">
+            <img :class="theTheme" v-bind:src="pokemon.backShiny">
         </div>
         <div id="statsBox">
-            <p>name: <span><br>{{ pokemon.name }}</span></p>
-            <p>id:<span><br>#{{ pokemon.id }}</span></p>
-            <p>type: <span><br>{{ pokemon.type1 }}</span><span v-if="pokemon.type2"><br>{{ pokemon.type2 }}</span></p>
-            <p>attack <span><br>{{ pokemon.attack }}</span></p>
-            <p>defense <span><br>{{ pokemon.defense }}</span></p>
+            <p :class="props.theTheme">name: <span :class="props.theTheme"><br>{{ pokemon.name }}</span></p>
+            <p :class="props.theTheme">id:<span :class="props.theTheme"><br>#{{ pokemon.id }}</span></p>
+            <p :class="props.theTheme">type: <span :class="props.theTheme"><br>{{ pokemon.type1 }}</span><span v-if="pokemon.type2"><br>{{ pokemon.type2 }}</span></p>
+            <p :class="props.theTheme">attack <span :class="props.theTheme"><br>{{ pokemon.attack }}</span></p>
+            <p :class="props.theTheme">defense <span :class="props.theTheme"><br>{{ pokemon.defense }}</span></p>
         </div>
     </section>
 </template>
@@ -73,6 +76,10 @@ section {
     width: 1000px;
     border: 8px double rgb(104, 107, 96);
     padding: 20px;
+}
+
+section.brick {
+    border: 8px double rgb(94, 102, 73);
 }
 
 #portraitsBox {
@@ -90,6 +97,10 @@ img {
     opacity: 80%;
 }
 
+img.brick {
+    filter: sepia(1) blur(0.3px) contrast(80%);
+}
+
 #statsBox {
     display: grid;
     grid-template-columns: 1fr;
@@ -101,7 +112,15 @@ p {
     color: var(--GBCtext);
 }
 
+p.brick {
+    color: var(--GBBtext)
+}
+
 span {
     color: var(--GBCboldText);
+}
+
+span.brick {
+    color: var(--GBBboldText);
 }
 </style>

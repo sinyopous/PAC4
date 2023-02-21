@@ -7,7 +7,7 @@ const theme = ref('color')
 
 const brickLavelClass = computed(() => {
     if (theme.value === 'brick') {
-        return 'checked'
+        return 'checked brick'
     } else {
         return ''
     }
@@ -16,8 +16,8 @@ const brickLavelClass = computed(() => {
 const colorLavelClass = computed(() => {
     if (theme.value === 'color') {
         return 'checked'
-    } else {
-        return ''
+    } else if (theme.value === 'brick') {
+        return 'brick'
     }
 })
 
@@ -55,13 +55,21 @@ label {
     color: var(--GBCtext);
 }
 
+.brick {
+    color: var(--GBBtext);
+}
+
 label:hover {
     cursor: pointer;
     text-shadow: 0 0 2px rgb(52, 53, 48);
 }
 
 .checked {
-    color: var(--GBCboldText)
+    color: var(--GBCboldText);
+}
+
+.checked.brick {
+    color: var(--GBBboldText);
 }
 
 input {

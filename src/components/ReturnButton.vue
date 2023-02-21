@@ -1,8 +1,18 @@
 <script setup>
+
+const props =  defineProps(['theTheme'])
+
+
+
+
 </script>
-onclick="history.back()"
+
+
+
 <template>
-    <p>return</p>
+    <p 
+        :class="props.theTheme"
+    >return</p>
 </template>
 
 <style scoped>
@@ -19,5 +29,9 @@ p {
 p:hover {
     text-shadow: 0 0 2px rgb(52, 53, 48);
     z-index: 1;
+}
+
+p.brick {
+    color: var(--GBBtext);
 }
 </style>

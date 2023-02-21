@@ -269,9 +269,13 @@ const printTheme = ()=> console.log(theme.value)
         <ThemeButton v-if="allPokesFetched"
         @emitTheme="(theTheme) => {theme = theTheme; printTheme()}"/>
 
-        <Return v-on:click="returnClick" v-if="allPokesFetched" />
+        <Return 
+          :theTheme="theme"
+          v-on:click="returnClick" v-if="allPokesFetched" />
 
-        <h1 v-if="!allPokesFetched">{{ catchEmAll }}</h1>
+        <h1
+        :class="theme"
+         v-if="!allPokesFetched">{{ catchEmAll }}</h1>
 
         <div v-show="allPokesFetched" id="loadedContent">
 
@@ -279,32 +283,45 @@ const printTheme = ()=> console.log(theme.value)
 
           <div v-show="tenPokeScreen" class="box">
             <section id="simpleCardBox">
-              <SimpleCard v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id" :info="pokemon"
-                v-on:click="pokeClick" />
+              <SimpleCard v-for="pokemon in fetchedPokes" 
+              v-bind:key="pokemon.id" 
+              :info="pokemon"
+              v-on:click="pokeClick"
+              :theTheme="theme" />
             </section>
           </div>
 
 
           <div v-show="tenPokeScreen || searchScreen" id="pokeSearchBar">
-            <label for="pokeInput">pokesearch </label>
-            <input id="pokeInput" type="text" placeholder="&nbsp;pokachu?" v-model="pokeToSearch"
+            <label
+              :class="theme"
+             for="pokeInput">pokesearch </label>
+            <input
+              :class="theme"
+             id="pokeInput" type="text" placeholder="&nbsp;pokachu?" v-model="pokeToSearch"
               v-on:input="searchInput">
           </div>
 
 
           <div v-show="tenPokeScreen || luckyScreen">
-            <GetRandomPoke v-on:emitArray="(array) => { arrayToShow = array; luckyClick() }" />
+            <GetRandomPoke
+              :theTheme="theme"
+              v-on:emitArray="(array) => { arrayToShow = array; luckyClick() }" />
           </div>
 
 
           <div v-show="luckyScreen || searchScreen" id="luckyBox">
-            <SimpleCardLucky v-for="pokemon in allPokesData" v-bind:key="pokemon.id" :info="pokemon"
+            <SimpleCardLucky 
+              :theTheme="theme"
+              v-for="pokemon in allPokesData" v-bind:key="pokemon.id" :info="pokemon"
               :pokeArray="arrayToShow" v-on:click="pokeClick" :pokeToSearch="pokeToSearch" :luckyScreen="luckyScreen"
               :searchScreen="searchScreen" />
           </div>
 
 
-          <RouterView v-show="detailsScreen" />
+          <RouterView 
+          :theTheme="theme"
+          v-show="detailsScreen" />
 
         </div>
       </div>
@@ -393,9 +410,16 @@ const printTheme = ()=> console.log(theme.value)
 }
 
 #pokeInput {
+  padding: 3px;
   background-color: rgb(232, 233, 226);
   border: 1px solid rgb(144, 145, 116);
   color: var(--GBCtext);
+  border-radius: 5px;
+}
+
+#pokeInput.brick {
+  background-color: rgb(174, 175, 127);
+  color: var(--GBBtext);
 }
 
 #pokeInput:active {
@@ -412,5 +436,13 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
   padding: 50px 0;
+}
+
+h1.brick {
+  color: var(--GBBtext);
+}
+
+label.brick {
+  color: var(--GBBtext);
 }
 </style>

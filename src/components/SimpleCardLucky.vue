@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const props = defineProps(['info','pokeArray','pokeToSearch','luckyScreen', 'searchScreen'])
+const props = defineProps(['info','pokeArray','pokeToSearch','luckyScreen', 'searchScreen', 'theTheme'])
 const dittoFront = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
 // console.log
 // console.log(props)
@@ -21,8 +21,12 @@ v-if="arrayPokes.some(x => x === props.info.index)"
         v-on:click="$router.push({ name: 'single', params: { pokeIndex: props.info.id } })">
         <div 
            >
-            <img v-bind:src="props.info.front || dittoFront">
-            <h2>{{ props.info.name }}</h2>
+            <img 
+            :class="props.theTheme"
+            v-bind:src="props.info.front || dittoFront">
+            <h2
+            :class="props.theTheme"
+            >{{ props.info.name }}</h2>
         </div>
     </section>
 </template> 
@@ -51,6 +55,13 @@ h2 {
     color: var(--GBCtext);
     font-size: 20px;
     text-align: center;
+}
+
+img.brick {
+    filter: sepia(1) blur(0.3px) contrast(80%);
+}
+h2.brick {
+    color: var(--GBBtext);
 }
 
 </style>
