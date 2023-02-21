@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "gameboy";
+  src: url(./EarlyGameBoy.ttf);
+}
+@font-face {
+  font-family: "eightbit";
+  src: url(8-bitArcadeIn.ttf);
+}
+
+
+:root {
+  --GBBbody: rgb(141, 141, 141);
+  --GBBscreen: rgb(156, 155, 102);
+  --GBBborder: rgb(83, 72, 90);
+  --GBBscreenShadow: rgb(70, 67, 34);
+  --GBBborderShadow: rgb(54, 54, 54);
+  --GBBtext: rgb(63, 70, 43);
+  --GBBboldText: rgb(31, 36, 21);
+
+  --GBCbody: rgb(196, 135, 2);
+  --GBCscreen: rgb(189, 194, 185);
+  --GBCborder: rgb(24, 24, 24);
+  --GBCscreenShadow: rgb(14, 14, 14);
+  --GBCborderShadow: rgb(136, 93, 1);
+  --GBCtext: rgb(124, 128, 114);
+  --GBCboldText: rgb(76, 77, 70);
+}
+
+* {
+  font-family: gameboy;
+  filter: blur(0.45px);
+  /* scroll-behavior: smooth; */
+  margin: 0;
+  padding: 0;
+  color: GBCtext;
+}
+
+.routerLink {
+  text-decoration: none;
+  font-size: 18px;
+  position: relative;
+  left: 10px;
+  color: var(--GBCboldText);
+  cursor: pointer;
+}
+
+.routerLink:hover {
+  color: var(--GBCboldText);
+  text-shadow: 0 0 2px rgb(52, 53, 48);
+}
