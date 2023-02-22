@@ -48,19 +48,18 @@ onMounted(() => {
 </script>
 
 <template>
-    <section 
-    :class="props.theTheme"
-     v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id">
+    <section :class="props.theTheme" v-for="pokemon in fetchedPokes" v-bind:key="pokemon.id">
         <div id="portraitsBox">
             <img :class="props.theTheme" v-bind:src="pokemon.front">
             <img :class="props.theTheme" v-bind:src="pokemon.back">
             <img :class="props.theTheme" v-bind:src="pokemon.frontShiny">
             <img :class="theTheme" v-bind:src="pokemon.backShiny">
         </div>
-        <div id="statsBox">
+        <div id="statsBox" :class="props.theTheme">
             <p :class="props.theTheme">name: <span :class="props.theTheme"><br>{{ pokemon.name }}</span></p>
             <p :class="props.theTheme">id:<span :class="props.theTheme"><br>#{{ pokemon.id }}</span></p>
-            <p :class="props.theTheme">type: <span :class="props.theTheme"><br>{{ pokemon.type1 }}</span><span v-if="pokemon.type2"><br>{{ pokemon.type2 }}</span></p>
+            <p :class="props.theTheme">type: <span :class="props.theTheme"><br>{{ pokemon.type1 }}</span><span
+                    v-if="pokemon.type2"><br>{{ pokemon.type2 }}</span></p>
             <p :class="props.theTheme">attack <span :class="props.theTheme"><br>{{ pokemon.attack }}</span></p>
             <p :class="props.theTheme">defense <span :class="props.theTheme"><br>{{ pokemon.defense }}</span></p>
         </div>
@@ -122,5 +121,129 @@ span {
 
 span.brick {
     color: var(--GBBboldText);
+}
+
+
+@media only screen and (max-width: 1350px) {
+    #portraitsBox {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #statsBox {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    img {}
+
+    p {}
+}
+
+@media only screen and (max-width: 1150px) {
+    section {
+        width: auto;
+        height: auto;
+        margin: 50px;
+    }
+
+
+}
+
+@media only screen and (max-width: 1000px) {
+    img {
+        width: 270px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+}
+
+@media only screen and (max-width: 850px) {
+    img {
+        width: 220px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 725px) {
+    img {
+        width: 220px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 725px) {
+    section {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-top: 50px;
+        /* border: none; */
+        padding: 0;
+        height: 650px;
+    }
+
+    #statsBox {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-content: center;
+
+    }
+
+    img {
+        width: 220px;
+    }
+
+    p {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    section {
+        margin-top: 40px;
+        height: auto;
+        border: none;
+        width: auto;
+        grid-template-rows: 2fr 1fr;
+    }
+
+    section.brick {
+        border: none;
+    }
+
+    img {
+        width: 175px;
+    }
+
+    p {
+        font-size: 12px;
+        text-align: center;
+    }
+    #portraitsBox {
+        padding: 10px;
+    }
+
+    #statsBox {
+        border: 8px double rgb(104, 107, 96);
+        padding: 10px;
+        width: 300px;
+        margin: auto;
+    }
+
+    #statsBox.brick {
+        border: 8px double rgb(94, 102, 73);
+    }
 }
 </style>

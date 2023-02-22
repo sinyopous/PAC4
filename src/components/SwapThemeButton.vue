@@ -85,12 +85,8 @@ input {
 }
 
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 500px) {
     label {
-        font-size: 12px;
-    }
-
-    input {
         font-size: 12px;
     }
 }

@@ -346,7 +346,7 @@ theme.value = window.localStorage.getItem('theme')
   position: relative;
   background-color: var(--GBCscreen);
   max-width: 1550px;
-  min-height: 850px;
+  min-height: 950px;
   margin: 100px auto;
   border-radius: 5px;
   border: 5px var(--GBCscreenShadow) solid;
@@ -466,7 +466,9 @@ label.brick {
 @media only screen and (max-width: 1575px) {
   #gameboyScreen {
     margin: 0 auto;
-    border: none
+    border: none;
+    min-height: 850px;
+    padding: 50px;
   }
   #gameboyScreen.brick {
     border: none
@@ -479,7 +481,66 @@ label.brick {
   #gameboyScreenBorder.brick {
     border: none
   }
+  #loadedContent {
+  padding: 0;
+}
 }
 
+
+@media only screen and (max-width: 1300px ) {
+  #gameboyScreen {
+    min-height: 800px;
+  }
+}
+
+
+@media only screen and (max-width: 1000px ) {
+  #gameboyScreen {
+    min-height: 700px;
+  }
+}
+
+@media only screen and (max-width: 900px ) {
+  #gameboyScreen {
+    min-height: 700px;
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 800px ) {
+  #gameboyScreen {
+    /* min-height: auto;
+    height: auto; */
+    padding: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  #pokeSearchBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  #gameboyScreen {
+    /* min-height: auto;
+    height: auto; */
+    padding: 10px;
+  }
+ 
+  
+  
+  label {
+    font-size: 14px;
+    
+  }
+
+  #loadedContent {
+    width: 350px;
+  }
+}
 
 </style>

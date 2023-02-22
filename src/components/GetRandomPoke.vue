@@ -33,18 +33,18 @@ const numMinusPokes = () => {
 
 //-------------------------------------------SHOW ALL BUTTON------------------------------------------
 const notShowAll = ref(false);
-const showPokes = ref('not show all')
+const showPokes = ref('no')
 const savedNumOfPokes = ref()
 
 const showToggle = () => {
     if (notShowAll.value) {
-        showPokes.value = 'show all'
+        showPokes.value = 'yes'
         savedNumOfPokes.value = numOfPokesToSearch.value
         numOfPokesToSearch.value = 1279
         
 
     } else if (!notShowAll.value) {
-        showPokes.value = 'not show all'
+        showPokes.value = 'no'
         numOfPokesToSearch.value = savedNumOfPokes.value
     }
     console.log(notShowAll.value)
@@ -71,7 +71,7 @@ const showToggle = () => {
         <div>
             <label
             :class="props.theTheme"
-             for="order">&nbsp; {{ showPokes }}</label>
+             for="order">&nbsp; show all:{{ showPokes }}</label>
             <input v-on:change="showToggle" v-model="notShowAll" type="checkbox" name="order" id="order">
         </div>
 </section>
@@ -130,7 +130,7 @@ input {
     color: var(--GBBboldText);
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 500px) {
     p, label{
         font-size: 12px;
     }
@@ -139,7 +139,9 @@ input {
     }
 
     section{
-        margin: 10px;
+        gap: 20px;
+        margin: 50px 20px 0 20px
     }
+
 }
 </style>

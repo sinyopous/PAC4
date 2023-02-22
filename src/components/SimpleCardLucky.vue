@@ -64,4 +64,41 @@ h2.brick {
     color: var(--GBBtext);
 }
 
+
+@media only screen and (max-width: 1350px) {
+    div {
+        width: 210px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    div {
+        width: 180px;
+    }
+    h2 {
+        font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) {
+    div {
+        width: 160px
+    }
+
+    h2 {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    div {
+        width: 150px;
+    }
+}
+
 </style>
